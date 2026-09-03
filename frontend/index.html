@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.R.O.P.S. — 3D Precision Agronomic Platform</title>
+    
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 3D Ambient Background Glow Lights -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <div class="app-wrapper">
+        <!-- TOP HEADER BAR -->
+        <header class="top-nav">
+            <div class="logo-area">
+                <div class="logo-badge-3d">
+                    <span class="logo-icon">🌱</span>
+                </div>
+                <div class="logo-text">
+                    <h1>C.R.O.P.S.</h1>
+                    <p>Climate & Resource-Optimized Predictive System</p>
+                </div>
+            </div>
+            <div class="header-badges">
+                <div class="h-badge"><span class="pulse-dot"></span> ML Accuracy: 99.55%</div>
+                <div class="h-badge">🌾 22 Crop Profiles</div>
+                <div class="h-badge">💰 Economics & 50kg Bags</div>
+            </div>
+        </header>
+
+        <!-- 3D QUICK EXHIBITION PRESETS BAR -->
+        <div class="presets-container">
+            <span class="presets-label">⚡ Exhibition 1-Click Demo Presets:</span>
+            <div class="preset-chips">
+                <button class="preset-chip active" data-preset="gangetic">🌾 Gangetic Alluvial (Rice/Jute)</button>
+                <button class="preset-chip" data-preset="deccan">🧶 Deccan Black Soil (Cotton)</button>
+                <button class="preset-chip" data-preset="semiarid">🫘 Semi-Arid Dryland (Mothbeans)</button>
+                <button class="preset-chip" data-preset="coastal">🥥 Coastal Tropics (Coconut)</button>
+                <button class="preset-chip" data-preset="orchard">🍏 Highland Orchard (Apple)</button>
+                <button class="preset-chip" data-preset="coffee">☕ Highland Plateau (Coffee)</button>
+            </div>
+        </div>
+
+        <!-- MAIN 3D WORKSPACE GRID -->
+        <main class="main-grid">
+            
+            <!-- LEFT PANE: INTERACTIVE INPUT CONSOLE (STATIC, TILTS ON SLIDER DRAG) -->
+            <section class="console-card" id="inputConsole">
+                <div class="card-header">
+                    <h2>🎛️ 3D Agronomic Parameters Console</h2>
+                    <span class="section-tag">Soil & Climate</span>
+                </div>
+
+                <!-- Climate Sync Widget -->
+                <div class="sync-box-3d">
+                    <div class="sync-top">
+                        <label>Agro-Climatic Zone</label>
+                        <span id="weatherStatus" class="weather-pill">Cached Baseline</span>
+                    </div>
+                    <div class="sync-inputs">
+                        <select id="regionSelect" class="styled-select"></select>
+                        <button id="syncWeatherBtn" class="btn-3d-secondary">🔄 Sync</button>
+                    </div>
+                </div>
+
+                <!-- Soil Chemistry Controls -->
+                <div class="controls-group">
+                    <div class="group-title">🧪 Soil Chemistry (Laboratory Readings)</div>
+                    
+                    <!-- Nitrogen -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Nitrogen (N)</label>
+                            <span class="val-bubble" id="valN">85 kg/ha</span>
+                        </div>
+                        <input type="range" id="sliderN" min="0" max="150" value="85" class="styled-range">
+                    </div>
+
+                    <!-- Phosphorus -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Phosphorus (P)</label>
+                            <span class="val-bubble" id="valP">50 kg/ha</span>
+                        </div>
+                        <input type="range" id="sliderP" min="5" max="150" value="50" class="styled-range">
+                    </div>
+
+                    <!-- Potassium -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Potassium (K)</label>
+                            <span class="val-bubble" id="valK">40 kg/ha</span>
+                        </div>
+                        <input type="range" id="sliderK" min="5" max="210" value="40" class="styled-range">
+                    </div>
+
+                    <!-- pH Level -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Soil pH Level</label>
+                            <span class="val-bubble" id="valPh">6.6 pH</span>
+                        </div>
+                        <input type="range" id="sliderPh" min="3.5" max="9.5" step="0.1" value="6.6" class="styled-range">
+                    </div>
+                </div>
+
+                <!-- Atmospheric Climate Controls -->
+                <div class="controls-group">
+                    <div class="group-title">⛅ Ambient Climate & Precipitation</div>
+                    
+                    <!-- Temperature -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Temperature (°C)</label>
+                            <span class="val-bubble" id="valTemp">26.0 °C</span>
+                        </div>
+                        <input type="range" id="sliderTemp" min="8" max="45" step="0.5" value="26.0" class="styled-range">
+                    </div>
+
+                    <!-- Humidity -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Relative Humidity (%)</label>
+                            <span class="val-bubble" id="valHumidity">82 %</span>
+                        </div>
+                        <input type="range" id="sliderHumidity" min="10" max="100" value="82" class="styled-range">
+                    </div>
+
+                    <!-- Rainfall -->
+                    <div class="slider-field-3d">
+                        <div class="field-header">
+                            <label>Seasonal Rainfall (mm)</label>
+                            <span class="val-bubble" id="valRain">210 mm</span>
+                        </div>
+                        <input type="range" id="sliderRain" min="20" max="300" step="5" value="210" class="styled-range">
+                    </div>
+                </div>
+
+                <!-- Land Area & Farmer Metadata -->
+                <div class="controls-group">
+                    <div class="group-title">📐 Farm Land Size & Identification</div>
+                    <div class="grid-2">
+                        <div class="input-field">
+                            <label>Farm Land Size</label>
+                            <input type="number" id="farmArea" value="2.5" step="0.5" min="0.25" class="styled-input">
+                        </div>
+                        <div class="input-field">
+                            <label>Unit</label>
+                            <select id="areaUnit" class="styled-select">
+                                <option value="Acres" selected>Acres</option>
+                                <option value="Hectares">Hectares</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid-2 mt-2">
+                        <div class="input-field">
+                            <label>Farmer Name</label>
+                            <input type="text" id="farmerName" value="Ramesh Kumar" class="styled-input">
+                        </div>
+                        <div class="input-field">
+                            <label>Plot / Field ID</label>
+                            <input type="text" id="fieldId" value="Plot #4-B" class="styled-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Big 3D Predict CTA Button -->
+                <button id="runPredictBtn" class="btn-3d-primary">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Compute Precision Recommendation</span>
+                </button>
+            </section>
+
+            <!-- RIGHT PANE: 3D RESULTS & MULTI-TAB INTELLIGENCE -->
+            <section class="results-stage">
+                
+                <!-- 3D HERO RECOMMENDATION CARD WITH PARALLAX TILT -->
+                <div class="hero-3d-card tilt-card" id="heroCard">
+                    <div class="card-glare"></div>
+                    <div class="hero-3d-content">
+                        <div class="crop-emblem-3d">
+                            <span id="resCropIcon" class="emblem-emoji">🌾</span>
+                            <div class="emblem-aura"></div>
+                        </div>
+                        <div class="hero-details">
+                            <div class="status-chip">Optimal Ecological Match</div>
+                            <h2 id="resCropName">Rice</h2>
+                            <p id="resCropCategory">Cereals & Grains • High Rainfall Tropical</p>
+                            <div class="hero-meta-row">
+                                <div class="conf-badge-3d">
+                                    <span class="conf-num" id="resConfidence">95.0%</span>
+                                    <span class="conf-label">Suitability Score</span>
+                                </div>
+                                <div class="verified-badge">
+                                    <span>✔ Random Forest Verified</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Top-3 Probabilities Mini Visualizer -->
+                        <div class="top3-widget">
+                            <div class="widget-title">🏆 Top-3 Rankings</div>
+                            <div id="top3Bars" class="top3-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D INTERACTIVE TABS BAR -->
+                <div class="tabs-nav-3d">
+                    <button class="tab-btn-3d active" data-tab="tab-fertilizer">🛍️ 50kg Fertilizer Sizing</button>
+                    <button class="tab-btn-3d" data-tab="tab-economics">💰 Financial ROI</button>
+                    <button class="tab-btn-3d" data-tab="tab-irrigation">💧 Smart Irrigation</button>
+                    <button class="tab-btn-3d" data-tab="tab-soilcard">📄 Soil Health Card</button>
+                    <button class="tab-btn-3d" data-tab="tab-xai">📊 Explainable AI</button>
+                </div>
+
+                <!-- TAB CONTENT PANELS -->
+                <div class="tab-panels-wrapper">
+                    
+                    <!-- TAB 1: 50KG COMMERCIAL FERTILIZER BAG SIZING -->
+                    <div class="tab-panel active" id="tab-fertilizer">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Commercial 50kg Fertilizer Requirement</h3>
+                                <p id="fertSubtitle">Scaled for 2.50 Acres (1.01 Hectares)</p>
+                            </div>
+                            <!-- 3D Bags Row -->
+                            <div class="bags-grid">
+                                <div class="bag-card-3d">
+                                    <div class="bag-icon-wrapper bag-urea">🛍️</div>
+                                    <div class="bag-info">
+                                        <div class="bag-name">Urea (46% N)</div>
+                                        <div class="bag-count" id="ureaBags">0.0 Bags</div>
+                                        <div class="bag-kg" id="ureaKg">Total: 0.0 kg</div>
+                                    </div>
+                                </div>
+                                <div class="bag-card-3d">
+                                    <div class="bag-icon-wrapper bag-dap">🛍️</div>
+                                    <div class="bag-info">
+                                        <div class="bag-name">DAP (18-46-0)</div>
+                                        <div class="bag-count" id="dapBags">0.0 Bags</div>
+                                        <div class="bag-kg" id="dapKg">Total: 0.0 kg</div>
+                                    </div>
+                                </div>
+                                <div class="bag-card-3d">
+                                    <div class="bag-icon-wrapper bag-mop">🛍️</div>
+                                    <div class="bag-info">
+                                        <div class="bag-name">MOP (60% K₂O)</div>
+                                        <div class="bag-count" id="mopBags">0.0 Bags</div>
+                                        <div class="bag-kg" id="mopKg">Total: 0.0 kg</div>
+                                    </div>
+                                </div>
+                                <div class="bag-card-3d">
+                                    <div class="bag-icon-wrapper bag-ph">🧪</div>
+                                    <div class="bag-info">
+                                        <div class="bag-name">Soil pH Status</div>
+                                        <div class="bag-count" id="phStatusText">Neutral</div>
+                                        <div class="bag-kg" id="phRemedyText">Optimal balance</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Application Schedule Table -->
+                            <div class="table-container-3d mt-4">
+                                <h4>📅 Seasonal Split Application Timetable</h4>
+                                <table class="styled-table" id="scheduleTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Crop Growth Stage</th>
+                                            <th>Urea (46% N)</th>
+                                            <th>DAP (18-46-0)</th>
+                                            <th>MOP (60% K₂O)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="scheduleTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: CROP ECONOMICS & FINANCIAL ROI -->
+                    <div class="tab-panel" id="tab-economics">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Crop Economics & Farm Profitability Projections</h3>
+                                <p id="econSubtitle">Projected yield, market revenue, and net profit for 2.50 Acres</p>
+                            </div>
+                            <div class="econ-metrics-grid">
+                                <div class="metric-card-3d">
+                                    <span class="m-label">🌾 Projected Total Yield</span>
+                                    <span class="m-val" id="econYield">0.0 Qtl</span>
+                                    <span class="m-sub" id="econYieldPerAcre">@ 0 Qtl/Acre</span>
+                                </div>
+                                <div class="metric-card-3d">
+                                    <span class="m-label">💵 Projected Gross Revenue</span>
+                                    <span class="m-val" id="econRevenue">₹0</span>
+                                    <span class="m-sub" id="econMsp">@ MSP/Mandi Rates</span>
+                                </div>
+                                <div class="metric-card-3d">
+                                    <span class="m-label">📉 Estimated Cultivation Cost</span>
+                                    <span class="m-val" id="econCost">₹0</span>
+                                    <span class="m-sub" id="econCostPerAcre">Seed, fertilizer, labor</span>
+                                </div>
+                                <div class="metric-card-3d highlight-profit">
+                                    <span class="m-label">💰 Net Profit Potential</span>
+                                    <span class="m-val" id="econProfit">₹0</span>
+                                    <span class="m-sub" id="econRoi">ROI: +0.0%</span>
+                                </div>
+                            </div>
+
+                            <div class="table-container-3d mt-4">
+                                <h4>⚖️ Top-3 Crops Comparative Financial Matrix</h4>
+                                <table class="styled-table" id="top3EconTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Crop</th>
+                                            <th>Est. Yield (Qtl)</th>
+                                            <th>Market / MSP (₹/Qtl)</th>
+                                            <th>Est. Cost (₹)</th>
+                                            <th>Gross Revenue (₹)</th>
+                                            <th>Net Profit (₹)</th>
+                                            <th>ROI (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="top3EconTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: SMART IRRIGATION & WATER MANAGEMENT -->
+                    <div class="tab-panel" id="tab-irrigation">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Smart Irrigation & Water Budgeting</h3>
+                                <p>Precision water balance analysis against crop ecological requirements</p>
+                            </div>
+                            <div class="grid-2">
+                                <div class="info-card-3d">
+                                    <div class="info-title">💧 Crop Hydrological Profile</div>
+                                    <div class="info-body">
+                                        <div class="info-row"><strong>Season:</strong> <span id="irrigSeason">-</span></div>
+                                        <div class="info-row"><strong>Duration:</strong> <span id="irrigDuration">-</span> days</div>
+                                        <div class="info-row"><strong>Water Need Tier:</strong> <span id="irrigWaterNeed" class="badge-accent">-</span></div>
+                                        <div class="info-row"><strong>Recommended System:</strong> <span id="irrigType">-</span></div>
+                                    </div>
+                                    <div class="tip-box mt-3" id="irrigTip">-</div>
+                                </div>
+
+                                <div class="info-card-3d">
+                                    <div class="info-title">🌧️ Seasonal Rainfall Balance</div>
+                                    <div class="balance-gauge-box">
+                                        <div class="gauge-vals">
+                                            <div>Current: <strong id="rainCurrent">0 mm</strong></div>
+                                            <div>Ideal: <strong id="rainIdeal">0 mm</strong></div>
+                                        </div>
+                                        <div class="gauge-status" id="rainStatusBox">Optimum Balance</div>
+                                    </div>
+                                    <div class="advisory-text mt-3" id="rainAdvisoryText">Natural precipitation is balanced.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: OFFICIAL SOIL HEALTH CARD EXPORT -->
+                    <div class="tab-panel" id="tab-soilcard">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Official Farmer Soil Health Card (1-Click Printable PDF/A4)</h3>
+                                <p>Certified agronomic extension card ready for physical distribution to farmers</p>
+                            </div>
+                            <div class="export-bar">
+                                <button id="downloadCardBtn" class="btn-3d-primary">
+                                    <span>📥 Download Certified Soil Health Card (Print-Ready HTML / PDF)</span>
+                                </button>
+                                <span class="help-text">Open file and click <strong>Print / Save to PDF</strong> or press <strong>Ctrl+P</strong>.</span>
+                            </div>
+                            <div class="card-preview-frame">
+                                <iframe id="cardPreviewIframe" src="about:blank"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: EXPLAINABLE AI & MODEL TRANSPARENCY -->
+                    <div class="tab-panel" id="tab-xai">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Explainable AI (XAI) & Model Metrics</h3>
+                                <p>Empirical evaluation benchmarks across 2,200 agricultural samples</p>
+                            </div>
+                            <div class="grid-4">
+                                <div class="stat-pill-3d">
+                                    <span class="label">Production Model</span>
+                                    <span class="val">Random Forest</span>
+                                </div>
+                                <div class="stat-pill-3d">
+                                    <span class="label">Overall Accuracy</span>
+                                    <span class="val">99.55%</span>
+                                </div>
+                                <div class="stat-pill-3d">
+                                    <span class="label">Macro Avg F1</span>
+                                    <span class="val">0.9955</span>
+                                </div>
+                                <div class="stat-pill-3d">
+                                    <span class="label">Evaluation Samples</span>
+                                    <span class="val">440 (20% Split)</span>
+                                </div>
+                            </div>
+                            <div class="feature-importance-box mt-4">
+                                <h4>🌟 Global Feature Importance (Gini Impurity)</h4>
+                                <div id="featureImportanceBars" class="feat-bars-list"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
