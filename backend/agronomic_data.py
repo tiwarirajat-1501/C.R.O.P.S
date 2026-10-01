@@ -228,7 +228,6 @@ CROP_ECONOMICS = {
         "water_saving_tip": "Precision sprinkler 'blossom showers' trigger uniform synchronized flowering."
     }
 }
-
 def get_crop_economics(crop_name: str) -> dict:
     """Retrieve economic benchmarks for a given crop."""
     return CROP_ECONOMICS.get(crop_name.lower(), {
