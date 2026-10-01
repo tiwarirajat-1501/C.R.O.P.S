@@ -483,7 +483,6 @@ def generate_soil_health_card_html(
                 <value style="color:#166534;">₹{economics['net_profit']:,.0f} (+{economics['roi']}%)</value>
             </div>
         </div>
-
         <!-- FOOTER -->
         <div class="footer">
             <div>
